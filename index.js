@@ -14,7 +14,7 @@ const urlDB = process.env.DATABASE_URL;
 
 // DATABASE CONNECTION WITH MONGODB
 mongoose.connect(urlDB)
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 
 //API CREATE
 app.get("/",(req,res)=>{
