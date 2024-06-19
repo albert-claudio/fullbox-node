@@ -13,8 +13,11 @@ app.use(cors())
 const urlDB = process.env.DATABASE_URL;
 
 // DATABASE CONNECTION WITH MONGODB
-mongoose.connect(urlDB)
-const PORT = process.env.PORT || 5000;
+mongoose.connect(urlDB, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.log('Error connecting to MongoDB:', err));
+
+const PORT = process.env.PORT || 4000;
 
 //API CREATE
 app.get("/",(req,res)=>{
@@ -236,3 +239,5 @@ app.listen(PORT,(error)=>{
         console.log("Error: "+error)
     }
 })
+
+module.exports = app;
