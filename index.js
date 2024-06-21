@@ -12,6 +12,7 @@ app.use(cors())
 
 const urlDB = process.env.DATABASE_URL;
 
+
 // DATABASE CONNECTION WITH MONGODB
 mongoose.connect(urlDB)
 mongoose.connect(urlDB, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -38,9 +39,10 @@ const upload = multer({storage:storage})
 app.use('/images',express.static('upload/images'))
 
 app.post("/upload",upload.single('product'),(req,res)=>{
+    const imageUrl = 'http://localhost:4000/images/${req.file.filename}'
     res.json({
         success:1,
-        image_url:`http://localhost:${PORT}/images/${req.file.filename}`
+    image_url: imageUrl
     })
 })
 
